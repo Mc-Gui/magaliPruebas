@@ -11,12 +11,9 @@ datagroup: magalipruebas_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "1 hour"
 }
-datagroup: proyecto_copia_default_datagroup {
-  # sql_trigger: SELECT MAX(id) FROM etl_log;;
-  max_cache_age: "1 hour"
-}
 
-datagroup: datagroup_probandoando{
+
+datagroup: datagroup_probando{
   label: "soy una etiqueta"
   description: "probando datagroup"
   max_cache_age: "5 hours"
@@ -27,7 +24,7 @@ datagroup: envio_ultimo_dia_mes{
   sql_trigger: SELECT max(id) FROM  inventory_items;;
 }
 
-persist_with: datagroup_probandoando
+persist_with: datagroup_probando
 #persist_for: "1 hour"
 
 # Explores allow you to join together different views (database tables) based on the
@@ -120,8 +117,13 @@ explore: product_facts {
 # Each joined view also needs to define a primary key.
 
 explore: products {
-  fields: [-products.esteesunfiltro]
+fields: [ALL_FIELDS*,-products.esteesunfiltro]#para el error de que no se encuentra el campo
+}
 
+explore: productsDeMujer {
+  from: products
+   sql_always_where: productsDeMujer.department={% parameter productsDeMujer.parafiltrarconparametro %};;#va el nombre del explore
+  fields: [ALL_FIELDS*,-productsDeMujer.esteesunfiltro,-productsDeMujer.category]
 }
 
 explore: users_filtrados {
