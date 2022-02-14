@@ -163,8 +163,14 @@ view: users {
 
   measure: total_age {
     type: sum
-    hidden: yes
+    hidden: no
     sql: ${age} ;;
+  }
+
+
+
+  measure: www {
+    sql: (${age}*100)/${total_age} ;;
   }
 
   measure: average_age {
