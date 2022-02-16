@@ -120,10 +120,10 @@ explore: products {
 fields: [ALL_FIELDS*,-products.esteesunfiltro]#para el error de que no se encuentra el campo
 }
 
-explore: productsDeMujer {
+explore: productsDeMujerw {
   from: products
-   sql_always_where: productsDeMujer.department={% parameter productsDeMujer.parafiltrarconparametro %};;#va el nombre del explore
-  fields: [ALL_FIELDS*,-productsDeMujer.esteesunfiltro,-productsDeMujer.category]
+   sql_always_where: productsDeMujerw.department={% parameter productsDeMujerw.parafiltrarconparametro %};;#va el nombre del explore
+  fields: [ALL_FIELDS*,-productsDeMujerw.esteesunfiltro,-productsDeMujerw.category]
 }
 
 explore: users_filtrados {

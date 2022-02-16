@@ -51,6 +51,20 @@ view: orders {
     ]
     sql: dateadd(year,8,${TABLE}.created_at) ;;
 
+
+    #no jala para todos los tipos y puede generar error, mejor crear otra dimension con puro date
+    html:
+
+        {% if _user_attributes['magali'] %}
+
+            {{ value | date: "%A, %B %e, %Y " }}
+
+    {% else %}
+
+    {{ rendered_value | date: "%b %d, %y" }}
+
+    {% endif %};;
+
   }
 
   measure:maximafecha
@@ -214,7 +228,7 @@ view: orders {
 
         set: source {
 
-          fields: [traffic_source, created_date,products.brand]
+          fields: [traffic_source, created_date,products.brand,esfecha,id,created_month, products.id,products.brand3 ]
 
         }
         #comit
