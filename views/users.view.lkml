@@ -189,7 +189,8 @@ view: users {
   dimension: sumamala {
     type:number
     sql: ${age}+${age} ;;
-
+rrrrrr
+rrrrrr
 
   }
   #
