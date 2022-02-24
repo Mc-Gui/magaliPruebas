@@ -47,6 +47,7 @@ view: order_items {
     type: number
     sql: ${TABLE}.id ;;
     suggest_dimension:order_items.stringtype
+    html: <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAJUlEQVR42u3NQQEAAAQEsJNcdFLw2gqsMukcK4lEIpFIJBLJS7KG6yVo40DbTgAAAABJRU5ErkJggg==" alt = 'hello' />;;
 
   }
 

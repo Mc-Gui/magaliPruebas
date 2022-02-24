@@ -16,8 +16,17 @@ view: users {
   dimension: id {
     primary_key: yes
     type: number
-    sql: ${TABLE}.id ;;
+    sql:${TABLE}.id, ;;
+
+
   }
+
+
+  dimension: dateweek {
+    type: date_week
+
+  }
+
 
   # Here's what a typical dimension looks like in LookML.
   # A dimension is a groupable field that can be used to filter query results.
@@ -155,7 +164,7 @@ view: users {
 
   measure: count {
     type: count
-    #drill_fields: [id, first_name, last_name, orders.count]
+    drill_fields: [id, first_name, last_name, orders.count]
   }
 
   # These sum and average measures are hidden by default.
@@ -179,7 +188,7 @@ view: users {
     sql: ${age} ;;
   }
 
-  measure: sexo {
+  measure: sexofiltrado {
     type: count
     filters: [gender: "f"]
   }
@@ -189,8 +198,8 @@ view: users {
   dimension: sumamala {
     type:number
     sql: ${age}+${age} ;;
-#rrrrr
-#rrrrr
+
+
   }
-  #
+
 }
