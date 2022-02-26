@@ -17,7 +17,7 @@ view: users {
     primary_key: yes
     type: number
     sql:${TABLE}.id, ;;
-
+  group_label: "estegrupo,otrogrupo"
 
   }
 
@@ -165,6 +165,10 @@ view: users {
   measure: count {
     type: count
     drill_fields: [id, first_name, last_name, orders.count]
+  }
+
+  measure: paradrill {
+
   }
 
   # These sum and average measures are hidden by default.
