@@ -30,10 +30,31 @@ view: orders {
   dimension: dependedeotravista {
     type: string
     sql:  ${TABLE}.id ;;
-    html:{% if products.brand3._value== 'Calvin Klein' %}
-        <p style="color: black; background-color: lightblue; font-size:100%; text-align:center">{{ rendered_value }}</p>
-{% endif %};;
+    #html:{% if products.brand3._value== 'Calvin Klein' %}
+     #   <p style="text-align:left; margin-left:1px; line-height:0.2; font-size:14px; color:blue; white-space:pre-wrap">{{ rendered_value }}</p>
+#{% endif %};;
+
+html:<div> <a href="https://docs.looker.com/exploring-data/exploring-data/merged-results"
+<p style = "text-align:left; margin-left:1px; line-height:0.2; font-size:20px; color:black;">
+<p style = "text-align:left; margin-left:1px; line-height:0.2; font-size:14px; color:blue; white-space:pre-wrap;"> &#10551 GO TO: &nbsp; {{rendered_value}} </a>
+<br> </div>;;
+
+
   }
+
+  dimension: dependedeotravistados {
+    type: string
+    sql:  ${TABLE}.id ;;
+    #html:{% if products.brand3._value== 'Calvin Klein' %}
+    #   <p style="text-align:left; margin-left:1px; line-height:0.2; font-size:14px; color:blue; white-space:pre-wrap">{{ rendered_value }}</p>
+#{% endif %};;
+
+    html:<div>  <a href="https://docs.looker.com/exploring-data/exploring-data/merged-results"
+      <p style = "text-align:left; margin-left:1px; line-height:0.2; font-size:20px; color:black;">
+      <p style = "text-align:left; margin-left:1px; line-height:0.2; font-size:14px; color:blue; white-space:pre-wrap;">&#10551 GO TO: &nbsp; {{rendered_value}} </a></div>;;
+
+
+    }
 
   # Dates and timestamps can be represented in Looker using a dimension group of type: time.
   # Looker converts dates and timestamps to the specified timeframes within the dimension group.
@@ -49,21 +70,21 @@ view: orders {
       quarter,
       year,day_of_week
     ]
-    sql: dateadd(year,8,${TABLE}.created_at) ;;
+    sql: ${TABLE}.created_at ;;
 
 
     #no jala para todos los tipos y puede generar error, mejor crear otra dimension con puro date
-    html:
+  #  html:
 
-        {% if _user_attributes['magali'] %}
+   #     {% if _user_attributes['magali'] %}
 
-            {{ value | date: "%A, %B %e, %Y " }}
+    #  {{ value | date: "%A, %B %e, %Y " }}
 
-    {% else %}
+    #{% else %}
 
-    {{ rendered_value | date: "%b %d, %y" }}
+     # {{ rendered_value | date: "%b %d, %y" }}
 
-    {% endif %};;
+    #{% endif %};;
 
   }
 
@@ -160,8 +181,8 @@ view: orders {
         type: string
         allowed_value: { value: "statusss" }
         allowed_value: { value: "traffic_source" }
-        allowed_value: { value: "user_id" }
-        default_value: "Date"
+        allowed_value: { value: "productsbrand" }
+        default_value: "statusss"
       }
 
       dimension: dimensiondinamica {
@@ -170,11 +191,12 @@ view: orders {
         CASE
           WHEN {% parameter dimension_picker %} = 'statusss' THEN ${statusss}
           WHEN {% parameter dimension_picker %} = 'traffic_source' THEN ${traffic_source}
-          WHEN {% parameter dimension_picker %} = 'user_id' THEN TO_CHAR(${user_id},'9999')
+          WHEN {% parameter dimension_picker %} = 'productsbrand' THEN ${products.brand}
+
           ELSE NULL
         END ;;
 
-
+        drill_fields: [source*]
 
 
         }
@@ -214,8 +236,8 @@ view: orders {
 
         measure: count {
           type: count
-          #drill_fields: [id, users.id, users.first_name, users.last_name, order_items.count]
-        }
+          drill_fields: [source*]
+          }
 
         measure: cancelled_orders_last_week {
           type: count
@@ -228,7 +250,7 @@ view: orders {
 
         set: source {
 
-          fields: [traffic_source, created_date,products.brand,esfecha,id,created_month, products.id,products.brand3 ]
+          fields: [traffic_source, created_date,products.brand,esfecha,id,created_month, products.ids, product_facts.image_file ]
 
         }
         #comit
