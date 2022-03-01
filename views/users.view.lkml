@@ -164,7 +164,7 @@ view: users {
 
   measure: count {
     type: count
-    drill_fields: [id, first_name, last_name, orders.count]
+    drill_fields: [id, first_name, last_name, orders.counts]
   }
 
   measure: paradrill {

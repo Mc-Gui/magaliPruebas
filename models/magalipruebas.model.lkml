@@ -92,7 +92,7 @@ explore: order_items {
 
 
 explore: orders {
-  fields:[ALL_FIELDS*,-orders.dependedeotravista]
+  fields:[ALL_FIELDS*,-orders.dependedeotravista,-orders.dimensiondinamica]
 
   join: users {
     type: left_outer
