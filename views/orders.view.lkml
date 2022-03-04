@@ -213,6 +213,8 @@ html:<div> <a href="https://docs.looker.com/exploring-data/exploring-data/merged
           type: string
           sql: ${TABLE}.status ;;
           drill_fields: [id, users.id, users.first_name]
+          suggest_explore: vistamanual
+          suggest_dimension: vistamanual.parasugerencia
         }
 
         dimension: traffic_source {

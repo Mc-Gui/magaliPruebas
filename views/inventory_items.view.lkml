@@ -1,4 +1,4 @@
-# The name of this view in Looker is "Inventory Items"
+# The name of this view in Looker is "Inventory Items" esteno
 view: inventory_items {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.

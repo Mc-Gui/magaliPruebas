@@ -16,7 +16,7 @@ view: users {
   dimension: id {
     primary_key: yes
     type: number
-    sql:${TABLE}.id, ;;
+    sql:${TABLE}.id ;;
   group_label: "estegrupo,otrogrupo"
 
   }
@@ -24,6 +24,7 @@ view: users {
 
   dimension: dateweek {
     type: date_week
+    sql: ${TABLE}.created_at ;;
 
   }
 
@@ -167,9 +168,6 @@ view: users {
     drill_fields: [id, first_name, last_name, orders.counts]
   }
 
-  measure: paradrill {
-
-  }
 
   # These sum and average measures are hidden by default.
   # If you want them to show up in your explore, remove hidden: yes.
@@ -189,7 +187,7 @@ view: users {
   measure: average_age {
     type: average
     hidden: no
-    sql: ${age} ;;
+    sql:${TABLE}.age ;;
   }
 
   measure: sexofiltrado {

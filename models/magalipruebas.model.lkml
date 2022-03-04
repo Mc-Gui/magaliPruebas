@@ -3,16 +3,17 @@ connection: "thelook"
 
 # include all the views
 include: "/views/**/*.view"
+include: "*.dashboard.lookml"
 
 # Datagroups define a caching policy for an Explore. To learn more,
 # use the Quick Help panel on the right to see documentation.
-
-week_start_day: sunday
 
 datagroup: magalipruebas_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "1 hour"
 }
+week_start_day:friday
+
 
 
 datagroup: datagroup_probando{
@@ -21,6 +22,7 @@ datagroup: datagroup_probando{
   max_cache_age: "5 hours"
   sql_trigger: SELECT (EXTRACT(MONTH FROM DATEADD( day, 1, GETDATE())));;
 }
+
 
 datagroup: envio_ultimo_dia_mes{
   sql_trigger: SELECT max(id) FROM  inventory_items;;
@@ -77,9 +79,9 @@ explore: order_items {
 
   }
 #------------muchos filtros--------------
-  always_filter: {
-    filters: [orders.statusss: "complete"]
-  }
+ # always_filter: {
+  #  filters: [orders.statusss: "complete"]
+  #}
 
 #  sql_always_where: ${orders.statusss}='complete' ;;
 
@@ -101,17 +103,17 @@ explore: orders {
   }
 }
 
-explore: product_facts {
+#explore: product_facts {
 
-  fields: [ALL_FIELDS*]#para el error de que no se encuentra el campo
-  join: products {
-    type: left_outer
-    sql_on: ${product_facts.product_id} = ${products.id} ;;
-    relationship: many_to_one
-    fields: [-products.esteesunfiltro]#para el error de que no se encuentra el campo
-  }
+#  fields: [ALL_FIELDS*]#para el error de que no se encuentra el campo
+ # join: products {
+  #  type: left_outer
+   # sql_on: ${product_facts.product_id} = ${products.id} ;;
+  #  relationship: many_to_one
+   # fields: [-products.esteesunfiltro]#para el error de que no se encuentra el campo
+  #}
 
-}
+#}
 
 
 # To create more sophisticated Explores that involve multiple views, you can use the join parameter.
@@ -135,6 +137,8 @@ explore: users_filtrados {
 }
 
 explore: users {}
+explore: vistamanual {}
 
 
-######################################################
+
+############Gatitos12345.##########################################
