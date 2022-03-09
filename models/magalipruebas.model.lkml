@@ -139,6 +139,6 @@ explore: users_filtrados {
 explore: users {}
 explore: vistamanual {}
 
-
+explore: sql_derivadauno {}
 
 ############Gatitos12345.##########################################
