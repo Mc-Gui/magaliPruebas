@@ -124,32 +124,26 @@ html:<div> <a href="https://docs.looker.com/exploring-data/exploring-data/merged
           WHEN {% parameter timeframe_picker %} = 'Quarter' THEN TO_DATE(${created_quarter},'YYYY-MM')
           WHEN {% parameter timeframe_picker %} = 'Year' THEN TO_DATE(${created_year},'YYYY')
           ELSE NULL
-        END ;;#tambien se puede hacer esto con if
+        END ;; #tambien se puede hacer esto con if
 
-      html:
+      html:{% if timeframe_picker._parameter_value == "'Date'" %}
 
+            {{ value | date: "%A, %B %e, %Y " }}
 
-        {% if parameter.timeframe_picker._value == "'Date'" %}
+          {% elsif timeframe_picker._parameter_value == "'Month'" %}
 
-        {{ value | date: "%A, %B %e, %Y " }}
+            {{ value | date: " %B %Y" }}
 
-        {% elsif parameter.timeframe_picker._value == "'Month'" %}
+            {% else %}
 
-       {{ rendered_value | date: " %B %Y" }}
+          {{ value | date: " %B %Y" }}
 
-        {% else %}
-
-        {{rendered_value}}
-
-        {% endif %}
+            {% endif %}
 
         ;;
 
 
-
-
-
-      }
+ }
 
 # My customized timeframes, added under the group "Created"
       dimension: date_formatted {
