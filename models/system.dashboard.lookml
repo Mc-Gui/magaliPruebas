@@ -32,7 +32,7 @@
     show_view_names: false
     show_row_numbers: true
     transpose: false
-    truncate_text: true
+    truncate_text: false
     hide_totals: false
     hide_row_totals: false
     size_to_fit: true
