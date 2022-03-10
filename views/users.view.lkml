@@ -12,7 +12,10 @@ view: users {
     type: date
   }
 
-
+dimension: teste {
+  type: string
+  sql: ${TABLE}.city;;
+}
 
   dimension: id {
     primary_key: yes
