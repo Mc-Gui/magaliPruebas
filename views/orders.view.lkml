@@ -136,7 +136,7 @@ html:<div> <a href="https://docs.looker.com/exploring-data/exploring-data/merged
 
             {% else %}
 
-          {{ value | date: " %B %Y" }}
+          {{ value }}
 
             {% endif %}
 
