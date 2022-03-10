@@ -21,7 +21,7 @@
     name: New Tile
     model: system__activity
     explore: pdt_event_log
-    type: table #looker_grid
+    type: looker_grid
     fields: [pdt_builds.connection, pdt_event_log.action, pdt_event_log.connection,
       pdt_event_log.hash, pdt_event_log.model_name, pdt_builds.status, pdt_builds.context,
       pdt_builds.dev_build, pdt_builds.view_name, pdt_builds.workspace, pdt_event_log.extract_view_from_table,
@@ -35,7 +35,7 @@
     truncate_text: true
     hide_totals: false
     hide_row_totals: false
-    size_to_fit: false
+    size_to_fit: true
     table_theme: transparent
     limit_displayed_rows: false
     enable_conditional_formatting: true
