@@ -1,6 +1,7 @@
 # Define the database connection to be used for this model.
 connection: "thelook"
 
+
 # include all the views
 include: "/views/**/*.view"
 include: "*.dashboard.lookml"
@@ -140,5 +141,6 @@ explore: users {}
 explore: vistamanual {}
 
 explore: sql_derivadauno {}
+explore: tablalooker {}
 
 ############Gatitos12345.##########################################
