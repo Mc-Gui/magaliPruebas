@@ -13,25 +13,22 @@ view: sql_derivadauno {
           2,
           3
       ORDER BY
-          2
+          3
 
       OFFSET {{ number_per_page._parameter_value | times: page._parameter_value | minus: number_per_page._parameter_value }}
-
-
        ;;
-  }
-
-  parameter: page {
-    type: number
   }
 
 
   parameter: number_per_page {
-
     type: number
     default_value: "5000"
     hidden: yes
 
+  }
+
+  parameter: page {
+    type: number
   }
 
 dimension: parameter_value{
