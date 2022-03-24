@@ -12,9 +12,9 @@ view: sql_derivadauno {
           1,
           2,
           3
-      ORDER BY
-          3
+          order by 3 asc
 
+      limit 3000000
       OFFSET {{ number_per_page._parameter_value | times: page._parameter_value | minus: number_per_page._parameter_value }}
        ;;
   }
@@ -29,6 +29,7 @@ view: sql_derivadauno {
 
   parameter: page {
     type: number
+    default_value: "1"
   }
 
 dimension: parameter_value{

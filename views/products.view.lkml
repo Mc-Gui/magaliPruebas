@@ -22,8 +22,6 @@ view: products {
     allowed_value: {label:"hombre" value:"Men"}
   }
 
-  parameter: nuevo {}
-
 
 
   #----------------------------------------DIMENSION----------------------------

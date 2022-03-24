@@ -1,6 +1,6 @@
 view: teste {
   # # You can specify the table name if it's different from the view name:
-   sql_table_name: @{schema}.users ;;
+#   sql_table_name: @{schema}.users ;;
   #
   dimension: character_maximum_length {
     type: number
