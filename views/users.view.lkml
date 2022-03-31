@@ -217,14 +217,17 @@ dimension: teste {
     type: count
     filters: [gender: "f"]
   }
-
+###
 
 
   dimension: sumamala {
     type:number
     sql: ${age}+${age} ;;
+  }
 
-
+  dimension: sumamdiez {
+    type:number
+    sql: ${age}+${age} ;;
   }
 
   dimension: edadde {
@@ -233,6 +236,14 @@ dimension: teste {
       FROM users AS o
       WHERE o.gender='f' and o.age=o.age
     ) ;;
-  }
+}
+
+# measure: pacomparar {
+ # type: sum
+  #  sql:CASE WHEN ${sumamala}<${sumamdiez}
+   #    THEN ${users.id}
+    #   ELSE NULL
+     #  END ;;
+  #}
 #cambio en rama
 }
