@@ -22,8 +22,6 @@ view: products {
     allowed_value: {label:"hombre" value:"Men"}
   }
 
-  parameter: nuevo {}
-
 
 
   #----------------------------------------DIMENSION----------------------------
@@ -168,13 +166,18 @@ view: products {
     sql: ${retail_price} ;;
   }
 
-  measure: average_retail_price {
+  measure: average_sale_price {
     type: average
-    hidden: yes
+    hidden: no
     sql: ${retail_price} ;;
   }
 #cambio
+  measure: percentage_change {
+    type: percent_of_previous
+    sql: ${average_sale_price} ;;
 
+
+  }
 
 
 }

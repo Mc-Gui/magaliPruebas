@@ -12,6 +12,25 @@ view: users {
     type: date
   }
 
+  parameter: dinamico {
+    type: date
+    default_value: "2017-03-01"
+
+    #suggest_dimension: max
+}
+
+filter: dinamyc {
+  type: date
+  default_value: "today"
+  suggest_dimension: max
+}
+
+  dimension: max {
+    type: date
+    sql: (select date(max( created_at)) from users);;
+    #hidden: yes
+}
+
 dimension: teste {
   type: string
   sql: ${TABLE}.city;;
@@ -198,14 +217,33 @@ dimension: teste {
     type: count
     filters: [gender: "f"]
   }
-
+###
 
 
   dimension: sumamala {
     type:number
     sql: ${age}+${age} ;;
-
-
   }
+
+  dimension: sumamdiez {
+    type:number
+    sql: ${age}+${age} ;;
+  }
+
+  dimension: edadde {
+    sql:(
+      SELECT created_at
+      FROM users AS o
+      WHERE o.gender='f' and o.age=o.age
+    ) ;;
+}
+
+# measure: pacomparar {
+ # type: sum
+  #  sql:CASE WHEN ${sumamala}<${sumamdiez}
+   #    THEN ${users.id}
+    #   ELSE NULL
+     #  END ;;
+  #}
 #cambio en rama
 }

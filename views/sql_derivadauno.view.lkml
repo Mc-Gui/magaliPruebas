@@ -3,7 +3,9 @@ view: sql_derivadauno {
     sql: SELECT
           "users"."email" AS "users.email",
           "users"."id" AS "users.id",
-          "orders"."id" AS "orders.id"
+          "orders"."id" AS "orders.id",
+          "orders"."status" as "status",
+          count("orders"."id") as count
       FROM
           "public"."order_items" AS "order_items"
           LEFT JOIN "public"."orders" AS "orders" ON "order_items"."order_id" = "orders"."id"
@@ -11,27 +13,26 @@ view: sql_derivadauno {
       GROUP BY
           1,
           2,
-          3
-      ORDER BY
-          2
+          3,
+          4
+          order by 2 asc
+                    limit 500
 
       OFFSET {{ number_per_page._parameter_value | times: page._parameter_value | minus: number_per_page._parameter_value }}
-
-
        ;;
-  }
-
-  parameter: page {
-    type: number
   }
 
 
   parameter: number_per_page {
-
     type: number
-    default_value: "5000"
+    default_value: "500"
     hidden: yes
 
+  }
+
+  parameter: page {
+    type: number
+    default_value: "1"
   }
 
 dimension: parameter_value{
@@ -61,6 +62,11 @@ dimension: parameter_value{
   dimension: orders_id{
     type: number
     sql: ${TABLE}."orders.id" ;;
+  }
+
+  dimension: status{
+    type: string
+    sql: ${TABLE}."status" ;;
   }
 
   set: detail {

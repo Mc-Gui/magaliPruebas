@@ -94,6 +94,14 @@ view: order_items {
     sql: DATEADD(year,8, ${TABLE}.returned_at) ;;
   }
 
+dimension: months {
+  type: date_month_name
+  #sql: DATE_TRUNC('month', ${returned_date}) ;;
+  sql: ${returned_date} ;;
+}
+
+
+
   dimension: sale_price {
     type: number
     hidden: no
@@ -130,8 +138,10 @@ view: order_items {
 
   measure: average_sale_price {
     type: average
-    hidden: yes
+    hidden: no
+    sql_distinct_key: ${returned_date} ;;
     sql: ${sale_price} ;;
+    drill_fields: [sale_price,returned_date,returned_year]
   }
 
   measure:total_revenue {
@@ -140,6 +150,19 @@ view: order_items {
     sql: ${sale_price} ;;
     value_format: "$0.00"
   }
+
+  dimension: usingtwotofill {
+    sql: case when ${sale_price} is null then users.age
+        else ${sale_price}
+        end;;
+  }
+
+
+
+  dimension: llenandocondosdos {
+    sql: coalesce(${sale_price},users.age) ;;
+  }
+
 
 #esto esta mal una medida de agregacion no puede referenciar a otra
   #measure: conteofiltrado {

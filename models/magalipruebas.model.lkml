@@ -1,11 +1,12 @@
 # Define the database connection to be used for this model.
 connection: "thelook"
 
+#include: "*"
 
 # include all the views
 include: "/views/**/*.view"
 include: "*.dashboard.lookml"
-
+#include: "//proyecto_copia_magali/views/columns.view.lkml"
 # Datagroups define a caching policy for an Explore. To learn more,
 # use the Quick Help panel on the right to see documentation.
 
@@ -16,6 +17,9 @@ datagroup: magalipruebas_default_datagroup {
 week_start_day:friday
 
 
+#explore: teste {
+ # view_name: teste
+#}
 
 datagroup: datagroup_probando{
   label: "soy una etiqueta"
